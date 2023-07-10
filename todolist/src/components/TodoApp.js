@@ -1,6 +1,7 @@
 import { useState } from "react";
 import TodoFrom from "./TodoForm";
 import TodoList from "./TodoList";
+import Navbar from "../Navbar/Navbar";
 
 const TodoApp = () => {
   const [todos, setTodos] = useState([]);
@@ -41,8 +42,12 @@ const TodoApp = () => {
     <div className="parentConatiner">
       <h1 className="TodoTitle">Todo List - AmirMmd</h1>
       <div className="container">
+        <Navbar
+          number={
+            todos.length - todos.filter((todo) => todo.isCompleted).length
+          }
+        />
         <TodoFrom addTodoHandler={addTodoHandler} />
-
 
         <TodoList
           todos={todos}
