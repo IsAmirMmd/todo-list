@@ -27,14 +27,14 @@ const TodoList = ({ todos, onComplete, onDelete, onUpdate }) => {
 
   return (
     <div>
-      <p>Todos to do : </p>
       <div>
-        {" "}
+        {edit.id  ? "" : "Todos to do :"}
         {edit.id ? (
           <TodoFrom addTodoHandler={submitHandler} edit={edit} />
         ) : (
           renderTodos()
         )}
+        {edit.id ? "update first to watch todos...!" : ""}
       </div>
     </div>
   );

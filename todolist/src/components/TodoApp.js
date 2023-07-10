@@ -38,17 +38,19 @@ const TodoApp = () => {
   };
 
   return (
-    <div className="container">
-      <h3 className="TodoTitle">Todo List - AmirMmd</h3>
+    <div className="parentConatiner">
+      <h1 className="TodoTitle">Todo List - AmirMmd</h1>
+      <div className="container">
+        <TodoFrom addTodoHandler={addTodoHandler} />
 
-      <TodoFrom addTodoHandler={addTodoHandler} />
 
-      <TodoList
-        todos={todos}
-        onComplete={onComplete}
-        onDelete={onDelete}
-        onUpdate={onUpdate}
-      />
+        <TodoList
+          todos={todos}
+          onComplete={onComplete}
+          onDelete={onDelete}
+          onUpdate={onUpdate}
+        />
+      </div>
     </div>
   );
 };

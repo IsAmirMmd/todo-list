@@ -26,7 +26,7 @@ const TodoFrom = (props) => {
   };
 
   return (
-    <form onSubmit={submitHandler}>
+    <form onSubmit={submitHandler} className="formControl">
       <input
         type="text"
         onChange={changeHandler}
