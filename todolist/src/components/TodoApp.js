@@ -12,7 +12,6 @@ const TodoApp = () => {
       isCompleted: false,
     };
     setTodos([...todos, newTodo]);
-    console.log(newTodo);
   };
 
   return (

@@ -1,4 +1,4 @@
-import Todo from "./components/Todo";
+import Todo from "./Todo";
 import { useState } from "react";
 
 const TodoList = ({ todos }) => {
