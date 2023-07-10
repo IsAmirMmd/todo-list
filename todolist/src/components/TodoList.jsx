@@ -1,7 +1,7 @@
 import Todo from "./Todo";
 import { useState } from "react";
 
-const TodoList = ({ todos, onComplete }) => {
+const TodoList = ({ todos, onComplete, onDelete }) => {
   const renderTodos = () => {
     if (todos.length === 0) return <div>add new todo !</div>;
     return todos.map((todo) => {
@@ -10,6 +10,7 @@ const TodoList = ({ todos, onComplete }) => {
           todo={todo}
           key={todo.id}
           onComplete={() => onComplete(todo.id)}
+          onDelete={() => onDelete(todo.id)}
         />
       );
     });

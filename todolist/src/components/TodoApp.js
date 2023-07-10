@@ -24,13 +24,17 @@ const TodoApp = () => {
     setTodos(udpatedTodo);
   };
 
+  const onDelete = (id) => {
+    setTodos(todos.filter((todo) => todo.id !== id));
+  };
+
   return (
     <div className="container">
       <h3 className="TodoTitle">Todo List - AmirMmd</h3>
 
       <TodoFrom addTodoHandler={addTodoHandler} />
 
-      <TodoList todos={todos} onComplete={onComplete} />
+      <TodoList todos={todos} onComplete={onComplete} onDelete={onDelete} />
     </div>
   );
 };
