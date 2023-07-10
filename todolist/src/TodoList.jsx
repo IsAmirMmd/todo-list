@@ -1,11 +1,18 @@
+import Todo from "./components/Todo";
 import { useState } from "react";
 
-const TodoList = (props) => {
-  const [todos, setTodos] = useState([]);
+const TodoList = ({ todos }) => {
+  const renderTodos = () => {
+    if (todos.length === 0) return <div>add new todo !</div>;
+    return todos.map((todo) => {
+      return <Todo todo={todo} key={todo.id} />;
+    });
+  };
 
   return (
     <div>
       <p>Todos to do : </p>
+      {renderTodos()}
     </div>
   );
 };
