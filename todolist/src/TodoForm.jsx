@@ -5,10 +5,13 @@ const TodoFrom = (props) => {
 
   const changeHandler = (e) => {
     setTodo(e.target.value);
+    console.log(todo);
   };
 
   const submitHandler = (e) => {
     e.preventDefault();
+    setTodo("");
+    props.addTodoHandler(todo);
   };
 
   return (
