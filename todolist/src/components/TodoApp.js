@@ -28,13 +28,27 @@ const TodoApp = () => {
     setTodos(todos.filter((todo) => todo.id !== id));
   };
 
+  const onUpdate = (id, value) => {
+    const findTodoID = todos.findIndex((todo) => todo.id === id);
+    const selectedTodo = { ...todos[findTodoID] };
+    selectedTodo.input = value;
+    const udpatedTodo = [...todos];
+    udpatedTodo[findTodoID] = selectedTodo;
+    setTodos(udpatedTodo);
+  };
+
   return (
     <div className="container">
       <h3 className="TodoTitle">Todo List - AmirMmd</h3>
 
       <TodoFrom addTodoHandler={addTodoHandler} />
 
-      <TodoList todos={todos} onComplete={onComplete} onDelete={onDelete} />
+      <TodoList
+        todos={todos}
+        onComplete={onComplete}
+        onDelete={onDelete}
+        onUpdate={onUpdate}
+      />
     </div>
   );
 };

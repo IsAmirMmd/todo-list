@@ -1,7 +1,15 @@
 import Todo from "./Todo";
 import { useState } from "react";
+import TodoFrom from "./TodoForm";
 
-const TodoList = ({ todos, onComplete, onDelete }) => {
+const TodoList = ({ todos, onComplete, onDelete, onUpdate }) => {
+  const [edit, setEdit] = useState({ id: null, input: "", isCompleted: false });
+
+  const submitHandler = (newValue) => {
+    onUpdate(edit.id, newValue);
+    setEdit({ id: null, input: "", isCompleted: false });
+  };
+
   const renderTodos = () => {
     if (todos.length === 0) return <div>add new todo !</div>;
     return todos.map((todo) => {
@@ -11,6 +19,7 @@ const TodoList = ({ todos, onComplete, onDelete }) => {
           key={todo.id}
           onComplete={() => onComplete(todo.id)}
           onDelete={() => onDelete(todo.id)}
+          onEdit={() => setEdit(todo)}
         />
       );
     });
@@ -19,7 +28,14 @@ const TodoList = ({ todos, onComplete, onDelete }) => {
   return (
     <div>
       <p>Todos to do : </p>
-      <div> {renderTodos()}</div>
+      <div>
+        {" "}
+        {edit.id ? (
+          <TodoFrom addTodoHandler={submitHandler} edit={edit} />
+        ) : (
+          renderTodos()
+        )}
+      </div>
     </div>
   );
 };
