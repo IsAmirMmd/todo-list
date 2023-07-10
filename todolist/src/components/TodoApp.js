@@ -14,13 +14,23 @@ const TodoApp = () => {
     setTodos([...todos, newTodo]);
   };
 
+  const onComplete = (id) => {
+    const findTodoID = todos.findIndex((todo) => todo.id === id);
+
+    const selectedTodo = { ...todos[findTodoID] };
+    selectedTodo.isCompleted = !selectedTodo.isCompleted;
+    const udpatedTodo = [...todos];
+    udpatedTodo[findTodoID] = selectedTodo;
+    setTodos(udpatedTodo);
+  };
+
   return (
     <div className="container">
       <h3 className="TodoTitle">Todo List - AmirMmd</h3>
 
       <TodoFrom addTodoHandler={addTodoHandler} />
 
-      <TodoList todos={todos} />
+      <TodoList todos={todos} onComplete={onComplete} />
     </div>
   );
 };
