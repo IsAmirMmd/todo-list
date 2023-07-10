@@ -12,7 +12,7 @@ const TodoList = ({ todos }) => {
   return (
     <div>
       <p>Todos to do : </p>
-      {renderTodos()}
+      <div> {renderTodos()}</div>
     </div>
   );
 };

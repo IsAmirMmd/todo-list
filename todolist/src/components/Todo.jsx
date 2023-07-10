@@ -1,6 +1,6 @@
 const Todo = ({ todo }) => {
   return (
-    <div key={todo.id}>
+    <div key={todo.id} className="TodoContainer">
       <p>{todo.input}</p>
       <div>
         <button>edit</button>
