@@ -1,10 +1,16 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import TodoFrom from "./TodoForm";
 import TodoList from "./TodoList";
 import Navbar from "../Navbar/Navbar";
 
 const TodoApp = () => {
   const [todos, setTodos] = useState([]);
+  const [filteredTodos, setFilteredTodos] = useState([]);
+  const [selectedOption, setSelectedOption] = useState("All");
+
+  useEffect(() => {
+    filterTodoList(selectedOption.value);
+  }, [todos, selectedOption]);
 
   const addTodoHandler = (input) => {
     const newTodo = {
@@ -38,6 +44,22 @@ const TodoApp = () => {
     setTodos(udpatedTodo);
   };
 
+  const filterTodoList = (category) => {
+    if (category === "done") {
+      setFilteredTodos(todos.filter((todo) => todo.isCompleted));
+    } else if (category === "not") {
+      setFilteredTodos(todos.filter((todo) => !todo.isCompleted));
+    } else {
+      setSelectedOption("All");
+      setFilteredTodos(todos);
+    }
+  };
+
+  const selectHandler = (event) => {
+    setSelectedOption(event);
+    filterTodoList(event.value);
+  };
+
   return (
     <div className="parentConatiner">
       <h1 className="TodoTitle">Todo List - AmirMmd</h1>
@@ -46,11 +68,13 @@ const TodoApp = () => {
           number={
             todos.length - todos.filter((todo) => todo.isCompleted).length
           }
+          selectedOption={selectedOption}
+          onChange={selectHandler}
         />
         <TodoFrom addTodoHandler={addTodoHandler} />
 
         <TodoList
-          todos={todos}
+          todos={filteredTodos}
           onComplete={onComplete}
           onDelete={onDelete}
           onUpdate={onUpdate}
